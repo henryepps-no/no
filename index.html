@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stop Point Enterprise | Home Appliances Retail Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #FF2C2C;
+      --yellow: #FFD600;
+      --navy: #0A0E2A;
+      --white: #FAFAFA;
+      --orange: #FF6B1A;
+      --light: #F5F0E8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(10,14,42,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--red);
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+    .logo span { color: var(--red); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: var(--white);
+      font-weight: 500; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--yellow); }
+    .nav-cta {
+      background: var(--red); color: var(--white) !important;
+      padding: 0.5rem 1.4rem; border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--orange) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,44,44,0.18) 0%, transparent 65%),
+                  radial-gradient(ellipse at 20% 80%, rgba(255,214,0,0.1) 0%, transparent 50%);
+    }
+    .hero-text { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--yellow); color: var(--navy);
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      padding: 0.35rem 1rem; border-radius: 2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .hero h1 .accent { color: var(--red); }
+    .hero h1 .accent2 { color: var(--yellow); }
+    .hero-sub {
+      font-size: 1.1rem; font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      max-width: 440px; line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
+    .btn-primary {
+      background: var(--red); color: var(--white);
+      padding: 1rem 2.2rem; border-radius: 4px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform 0.2s, background 0.2s;
+      border: 2px solid var(--red);
+    }
+    .btn-primary:hover { background: var(--orange); border-color: var(--orange); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 1rem 2.2rem; border-radius: 4px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn 1s ease 0.4s both;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%; max-width: 460px;
+    }
+    .product-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.8rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .product-card:hover { transform: translateY(-6px); border-color: var(--red); }
+    .product-card .icon { font-size: 2.6rem; }
+    .product-card p { font-size: 0.85rem; font-weight: 500; text-align: center; color: rgba(255,255,255,0.85); }
+    .product-card:nth-child(1) { background: rgba(255,44,44,0.12); }
+    .product-card:nth-child(2) { background: rgba(255,214,0,0.08); margin-top: 1.5rem; }
+    .product-card:nth-child(3) { background: rgba(255,107,26,0.1); margin-top: -1.5rem; }
+    .product-card:nth-child(4) { background: rgba(255,44,44,0.06); }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--red);
+      display: flex; justify-content: space-around; flex-wrap: wrap;
+      padding: 2.5rem 5%;
+      gap: 1rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem; letter-spacing: 2px;
+      color: var(--white);
+    }
+    .stat-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 7rem 5%;
+      background: var(--light);
+      color: var(--navy);
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-tag {
+      display: inline-block;
+      background: var(--red); color: var(--white);
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      padding: 0.35rem 1rem; border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 2px;
+      line-height: 1;
+      color: var(--navy);
+    }
+    .section-title .red { color: var(--red); }
+    .section-sub { color: rgba(10,14,42,0.6); max-width: 500px; margin: 1rem auto 0; font-size: 1rem; line-height: 1.7; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2.2rem;
+      border-bottom: 4px solid transparent;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .service-card:hover { border-color: var(--red); transform: translateY(-6px); box-shadow: 0 12px 32px rgba(255,44,44,0.12); }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .service-card:nth-child(1) .service-icon { background: rgba(255,44,44,0.1); }
+    .service-card:nth-child(2) .service-icon { background: rgba(255,214,0,0.15); }
+    .service-card:nth-child(3) .service-icon { background: rgba(255,107,26,0.1); }
+    .service-card:nth-child(4) .service-icon { background: rgba(10,14,42,0.07); }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--navy); }
+    .service-card p { font-size: 0.92rem; color: rgba(10,14,42,0.65); line-height: 1.65; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 7rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      background: var(--navy);
+    }
+    .about-visual { position: relative; }
+    .about-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+    }
+    .about-box::before {
+      content: '';
+      position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--red), var(--yellow), transparent);
+      z-index: -1;
+    }
+    .about-float {
+      background: var(--red); color: var(--white);
+      border-radius: 10px; padding: 1.2rem 1.5rem;
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      box-shadow: 0 8px 24px rgba(255,44,44,0.4);
+      text-align: center;
+    }
+    .about-float .big { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 2px; display: block; }
+    .about-float small { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; }
+    .about-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+    .about-list li {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.95rem; color: rgba(255,255,255,0.8);
+    }
+    .about-list li::before {
+      content: '✔'; color: var(--yellow);
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+    .about-text .section-tag { display: block; width: fit-content; }
+    .about-text .section-title { text-align: left; color: var(--white); }
+    .about-text .section-title .red { color: var(--red); }
+    .about-p { color: rgba(255,255,255,0.65); line-height: 1.8; margin: 1.2rem 0 2rem; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--red);
+      padding: 6rem 5%;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: 'STOP POINT';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20vw; color: rgba(255,255,255,0.06);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      white-space: nowrap; letter-spacing: 4px;
+    }
+    .cta-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: 2px; position: relative;
+    }
+    .cta-section p {
+      font-size: 1.1rem; opacity: 0.85; max-width: 500px;
+      margin: 1rem auto 2.5rem; position: relative;
+    }
+    .btn-white {
+      background: var(--white); color: var(--red);
+      padding: 1rem 2.5rem; border-radius: 4px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 1px; position: relative;
+      transition: transform 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-white:hover { background: var(--yellow); color: var(--navy); transform: translateY(-3px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #050814;
+      padding: 3rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      border-top: 2px solid rgba(255,44,44,0.3);
+    }
+    footer .logo { font-size: 1.4rem; }
+    footer p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--yellow); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+      .hero-visual { display: none; }
+      .about { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Stop<span>Point</span> Enterprise</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-tag">🏠 Stop Point Enterprise | Home Appliances Retail Shop</span>
+    <h1>Power Your<br/><span class="accent">Home.</span><br/><span class="accent2">Elevate</span><br/>Your Life.</h1>
+    <p class="hero-sub">Stop Point Enterprise brings you the finest home appliances — from kitchens to living rooms — with unbeatable prices and expert service.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Shop Now</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-grid">
+      <div class="product-card"><div class="icon">🍳</div><p>Cooking Appliances</p></div>
+      <div class="product-card"><div class="icon">❄️</div><p>Refrigerators</p></div>
+      <div class="product-card"><div class="icon">🌀</div><p>Washing Machines</p></div>
+      <div class="product-card"><div class="icon">📺</div><p>Electronics</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Products in Stock</div></div>
+  <div class="stat"><div class="stat-num">10K+</div><div class="stat-label">Happy Customers</div></div>
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Top Brands</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Customer Support</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <span class="section-tag">What We Offer</span>
+    <h2 class="section-title">Everything Your Home <span class="red">Needs</span></h2>
+    <p class="section-sub">From premium kitchen appliances to cutting-edge electronics — we have it all under one roof.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🍳</div>
+      <h3>Kitchen Appliances</h3>
+      <p>Blenders, microwaves, ovens, and more. Equip your kitchen with top-tier appliances built to last.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">❄️</div>
+      <h3>Cooling & Refrigeration</h3>
+      <p>Stay fresh with our wide range of refrigerators, freezers, and air conditioners from leading brands.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌀</div>
+      <h3>Laundry Solutions</h3>
+      <p>Washing machines, dryers, and ironing systems to keep your home running smoothly every day.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>After-Sales Support</h3>
+      <p>Expert installation, maintenance, and repair services — we're with you long after the purchase.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-box">
+      <p style="color:rgba(255,255,255,0.6); line-height:1.8; font-size:0.95rem;">
+        At Stop Point Enterprise, we believe every home deserves quality appliances that make life easier, more comfortable, and more enjoyable. Our showroom brings together the best global and local brands in one destination.
+      </p>
+      <ul class="about-list">
+        <li>Certified products from trusted brands</li>
+        <li>Competitive pricing & flexible payment options</li>
+        <li>Professional delivery & installation</li>
+        <li>Warranty support on all products</li>
+        <li>Expert in-store consultations</li>
+      </ul>
+      <div class="about-float">
+        <span class="big">10+</span>
+        <small>Years of Excellence</small>
+      </div>
+    </div>
+  </div>
+  <div class="about-text">
+    <span class="section-tag">About Us</span>
+    <h2 class="section-title">Your Trusted <span class="red">Home</span> Partner</h2>
+    <p class="about-p">Stop Point Enterprise has been a cornerstone of quality home appliance retail for over a decade. We pride ourselves on offering exceptional products, honest advice, and service that goes beyond the sale.</p>
+    <p class="about-p">Whether you're furnishing a new home or upgrading your existing appliances, our team is here to guide you every step of the way.</p>
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Ready to Upgrade Your Home?</h2>
+  <p>Visit our store or get in touch with our team today. Great appliances are just one stop away.</p>
+  <a href="tel:+233000000000" class="btn-white">📞 Call Us Today</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Stop<span>Point</span> Enterprise</div>
+  <p>© 2026 Stop Point Enterprise. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
